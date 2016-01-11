@@ -11,8 +11,6 @@ import com.squareup.okhttp.Request;
  */
 class OkHttpUtils {
 
-    private String url;
-
     private static OkHttpClient okHttpClient;
 
     //单例设计模式获取okHttpUtils的实例化对象
@@ -27,7 +25,7 @@ class OkHttpUtils {
     private static OkHttpUtils okHttpUtils;
 
     //获取OkHttpUtils的对象
-    public static synchronized OkHttpUtils getOkHttpUtils() {
+    public static synchronized OkHttpUtils getInstanceOkHttpUtils() {
 
         if (okHttpUtils == null) {
 
@@ -38,17 +36,7 @@ class OkHttpUtils {
         return okHttpUtils;
 
     }
-
-
-    //设置网络请求的url路径
-
-    public void setUrl(String url) {
-
-        if (url != null) {
-
-            this.url = url;
-        }
-    }
+    
 
     //进行get网络请求
     public static void get(String url,Callback callback,int requestCode){
