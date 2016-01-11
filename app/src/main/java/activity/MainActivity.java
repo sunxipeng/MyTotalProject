@@ -1,19 +1,27 @@
-package com.sunxipeng.mytotalproject;
+package activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Window;
 
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+import fragment.ContentFragment;
+import fragment.MoiveFragment;
+import com.sunxipeng.mytotalproject.R;
 import com.sunxipeng.viewpagerindicator.TabPageIndicator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity {
+import adapter.WYNewsAdapter;
+
+public class MainActivity extends FragmentActivity implements Callback{
 
     private static final String[] CONTENT = new String[] { "菜谱", "电影", "体育", "财经" };
 
@@ -40,7 +48,7 @@ public class MainActivity extends FragmentActivity {
 
     private void findView() {
 
-        FragmentPagerAdapter adapter = new WYNewsAdapter(getSupportFragmentManager());
+        FragmentPagerAdapter adapter = new WYNewsAdapter(getSupportFragmentManager(),fragments,CONTENT);
 
         ViewPager pager = (ViewPager)findViewById(R.id.pager);
         pager.setAdapter(adapter);
@@ -49,25 +57,15 @@ public class MainActivity extends FragmentActivity {
         indicator.setViewPager(pager);
     }
 
-    class WYNewsAdapter extends FragmentPagerAdapter {
-        public WYNewsAdapter(FragmentManager fm) {
-            super(fm);
-        }
+    @Override
+    public void onFailure(Request request, IOException e) {
 
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-
-            return CONTENT[position % CONTENT.length].toUpperCase();
-        }
-
-        @Override
-        public int getCount() {
-            return CONTENT.length;
-        }
     }
+
+    @Override
+    public void onResponse(Response response) throws IOException {
+
+    }
+
+
 }
