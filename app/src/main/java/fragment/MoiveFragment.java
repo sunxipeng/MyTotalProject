@@ -1,25 +1,28 @@
 package fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.sunxipeng.mytotalproject.R;
 
 /**
  * Created by Administrator on 2016/1/11.
  */
-public class MoiveFragment extends Fragment {
-
-    @Nullable
+public class MoiveFragment extends BaseFragment {
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    int getLayoutID() {
 
-        View view = inflater.inflate(R.layout.moive,null);
-
-        return view;
+        return R.layout.moive;
     }
+
+    @Override
+    protected void initView(View view) {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+
 }

@@ -7,21 +7,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Window;
 
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import fragment.ContentFragment;
-import fragment.MoiveFragment;
 import com.sunxipeng.mytotalproject.R;
 import com.sunxipeng.viewpagerindicator.TabPageIndicator;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import adapter.WYNewsAdapter;
+import fragment.ContentFragment;
+import fragment.MoiveFragment;
 
-public class MainActivity extends FragmentActivity implements Callback{
+public class MainActivity extends FragmentActivity{
 
     private static final String[] CONTENT = new String[] { "菜谱", "电影", "体育", "财经" };
 
@@ -55,16 +51,6 @@ public class MainActivity extends FragmentActivity implements Callback{
 
         TabPageIndicator indicator = (TabPageIndicator)findViewById(R.id.indicator);
         indicator.setViewPager(pager);
-    }
-
-    @Override
-    public void onFailure(Request request, IOException e) {
-
-    }
-
-    @Override
-    public void onResponse(Response response) throws IOException {
-
     }
 
 
