@@ -14,8 +14,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import utils.OkHttpUtils;
-
 /**
  * Created by Administrator on 2016/1/11.
  */
