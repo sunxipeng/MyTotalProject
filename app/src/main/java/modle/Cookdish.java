@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class Cookdish implements Serializable{
 
+    private static final long serialVersionUID = -7060210544600464481L;
 
     public ArrayList<String> albums;
 
@@ -24,8 +25,7 @@ public class Cookdish implements Serializable{
     public  String title;
 
 
-    public class Step {
-
+    public class Step implements Serializable{
 
         public String img;
 

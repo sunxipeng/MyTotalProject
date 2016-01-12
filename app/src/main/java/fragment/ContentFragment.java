@@ -1,8 +1,11 @@
 package fragment;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
@@ -11,6 +14,7 @@ import com.sunxipeng.mytotalproject.R;
 
 import java.io.IOException;
 
+import activity.DishDetialActivity;
 import adapter.MenuAdapter;
 import modle.Cookdish;
 import modle.DishMenu;
@@ -80,6 +84,20 @@ public class ContentFragment extends BaseFragment implements Callback {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                             Cookdish cookdish = dishMenu.data.get(position);
+
+                            Toast.makeText(getActivity(),"我是第"+position+"个条目",Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(getActivity(), DishDetialActivity.class);
+
+                            Bundle bundle = new Bundle();
+
+                            bundle.putSerializable("cookdish",cookdish);
+
+                            intent.putExtras(bundle);
+
+                            startActivity(intent);
+
+
 
                         }
                     });

@@ -6,7 +6,7 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 
 /**
- * Created by Administrator on 2016/1/12.
+ * Created by sunxipeng on 2016/1/12.
  */
 public class OkHttpUtils {
 
