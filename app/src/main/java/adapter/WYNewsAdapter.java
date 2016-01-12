@@ -16,6 +16,7 @@ public class WYNewsAdapter extends FragmentPagerAdapter {
     private String[] CONTENT;
 
     public WYNewsAdapter(FragmentManager fm,List list,String[] count) {
+
         super(fm);
 
         this.fragments = list;

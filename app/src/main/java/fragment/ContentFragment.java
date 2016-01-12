@@ -1,33 +1,35 @@
 package fragment;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.sunxipeng.mytotalproject.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 
+import adapter.MenuAdapter;
+import modle.Cookdish;
+import modle.DishMenu;
 import okhttputils.OkHttpUtils;
+import okhttputils.ParseModle;
 
 /**
  * Created by Administrator on 2016/1/11.
  */
-public class ContentFragment extends BaseFragment implements Callback{
+public class ContentFragment extends BaseFragment implements Callback {
 
     private String TAG = "ContentFragment";
 
-    TextView textView;
+    ListView list_menu;
 
     String str = null;
 
     String url = "http://apis.juhe.cn/cook/query?key=0902a0f28dd3f28c2c6b73b74db94cd1&menu=%E9%B1%BC";
+
     @Override
     int getLayoutID() {
 
@@ -39,9 +41,11 @@ public class ContentFragment extends BaseFragment implements Callback{
     protected void initView(View view) {
 
 
-       OkHttpUtils.getInstanceOkHttpUtils().get(url, this, 0);
+        OkHttpUtils.getInstanceOkHttpUtils().get(url, this, 0);
 
-        textView = (TextView) view.findViewById(R.id.tv);
+        list_menu = (ListView) view.findViewById(R.id.list_menu);
+
+
 
     }
 
@@ -55,43 +59,34 @@ public class ContentFragment extends BaseFragment implements Callback{
     public void onFailure(Request request, IOException e) {
 
 
-
     }
 
     @Override
     public void onResponse(Response response) throws IOException {
 
 
-        String str = response.body().string();
+            String str = response.body().string();
 
-        try {
-
-            JSONObject jsonObject = new JSONObject(str);
-
-            final String reason = jsonObject.optString("reason");
-
+            final DishMenu dishMenu = ParseModle.getInstatceParceModle().parseResult(str, DishMenu.class);
 
             getActivity().runOnUiThread(new Runnable() {
-
                 @Override
                 public void run() {
 
-                    textView.setText(reason);
+                    list_menu.setAdapter(new MenuAdapter(getActivity(), dishMenu.data));
+
+                    list_menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            Cookdish cookdish = dishMenu.data.get(position);
+
+                        }
+                    });
                 }
             });
 
 
-            int code = jsonObject.optInt("resultcode");
-
-            if(code == 200){
-
-                Log.d(TAG, "请求数据成功");
-
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
     }
 }
