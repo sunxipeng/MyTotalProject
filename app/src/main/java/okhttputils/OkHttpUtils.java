@@ -1,4 +1,4 @@
-package utils;
+package okhttputils;
 
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -6,10 +6,9 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 
 /**
- * 网络层的封装处理
- * Created by sunxipeng on 2016/1/11.
+ * Created by Administrator on 2016/1/12.
  */
-class OkHttpUtils {
+public class OkHttpUtils {
 
     private static OkHttpClient okHttpClient;
 
@@ -36,10 +35,10 @@ class OkHttpUtils {
         return okHttpUtils;
 
     }
-    
+
 
     //进行get网络请求
-    public static void get(String url,Callback callback,int requestCode){
+    public static void get(String url, Callback callback, int requestCode) {
 
         Request request = new Request.Builder().url(url).build();
 

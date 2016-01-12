@@ -14,6 +14,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttputils.OkHttpUtils;
+
 /**
  * Created by Administrator on 2016/1/11.
  */
@@ -36,7 +38,8 @@ public class ContentFragment extends BaseFragment implements Callback{
     @Override
     protected void initView(View view) {
 
-        OkHttpUtils.getInstanceOkHttpUtils().get(url, this, 0);
+
+       OkHttpUtils.getInstanceOkHttpUtils().get(url, this, 0);
 
         textView = (TextView) view.findViewById(R.id.tv);
 
